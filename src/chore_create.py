@@ -10,7 +10,7 @@ class chore:
         self.length = length
         self.area = area
         if start_date is None:
-            self.start_date = datetime.datetime.now()
+            self.start_date = datetime.datetime.now().strftime("%Y-%m-%d")
         else:
             self.start_date = start_date
         self.last_completed = last_completed

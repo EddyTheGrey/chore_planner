@@ -1,10 +1,8 @@
-import calendar_create
 import datetime
 import pandas as pd
 import os
 import chore_create
 import chore_storage
-import keyboard
 
 def todays_chores(chores = [], filename = "csv_files/chores.csv"):
     today = datetime.datetime.now().date()
@@ -17,8 +15,8 @@ def todays_chores(chores = [], filename = "csv_files/chores.csv"):
             if key == 'y':
                 chore.mark_completed()
                 print(f"Marked '{chore.name}' as completed on {chore.last_completed}.")
-                chore.last_completed = datetime.datetime.now()
-                chore.next_due_date = chore.last_completed + pd.to_timedelta(chore.frequency)
+                chore.last_completed = datetime.datetime.now().strftime("%Y-%m-%d")
+                chore.next_due_date = chore.last_completed + pd.to_timedelta(chore.frequency, unit='D')
             elif key == 'n':
                 print(f"Chore '{chore.name}' not marked as completed.")
     
@@ -31,11 +29,13 @@ def add_chore(chores, filename):
     if key == 'y':
         name = input("Enter chore name: ")
         description = input("Enter chore description: ")
-        frequency = input("Enter chore frequency (e.g., Daily, Weekly): ")
+        frequency = int(input("Enter chore frequency in number of days: "))
         length = int(input("Enter chore length in minutes: "))
         area = input("Enter chore area (e.g., Kitchen, Bathroom): ")
+        due_date_input = input("Enter next due date (YYYY-MM-DD) or leave blank for no due date: ")
+        next_due_date = pd.to_datetime(due_date_input) if due_date_input else None  
 
-        new_chore = chore_create.chore(name, description, frequency, length, area)
+        new_chore = chore_create.chore(name, description, frequency, length, area, next_due_date=next_due_date )
         chores.append(new_chore)
         chore_storage.save_chores_to_csv(chores, filename=filename)
 
@@ -69,7 +69,9 @@ def main():
     # Print loaded chores
     print("\nThat completes today's chores. Here are the chore outlook for the next few days:")
     for chore in chores:
+        print("------------------------------")
         print(chore)
+        print("------------------------------")
 
 if __name__ == "__main__":
     main()
