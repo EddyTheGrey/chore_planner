@@ -2,11 +2,14 @@ import unittest
 import os
 from src.chore_create import chore
 
+'''
+Tests for the chore class, which is used to create and manage chores.
+'''
 
 class TestChore(unittest.TestCase):
     def setUp(self):
-        self.chore = chore(
-            name="Test Chore",
+            self.chore = chore(
+                name="Test Chore",
             description="This is a test chore.",
             frequency="Daily",
             length=30,

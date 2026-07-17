@@ -2,6 +2,12 @@ import json
 import os
 import datetime
 
+'''
+This section is focused on the chore class, which is used to create and manage chores.
+The chore class has attributes for the name, description, frequency, length, area, start date, last completed date, and next due date of the chore. 
+It also has methods for updating the chore's attributes, deleting the chore, getting the chore's information as a dictionary, and marking the chore as completed by updating the last completed date to the current date and time.
+'''
+
 class chore:
     def __init__(self, name, description, frequency, length, area, start_date = None, last_completed=None, next_due_date=None):
         self.name = name

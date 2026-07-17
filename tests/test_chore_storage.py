@@ -3,6 +3,10 @@ import os
 from src.chore_storage import load_chores_from_csv, save_chores_to_csv
 from src.chore_create import chore
 
+'''
+Tests for the chore storage module, which handles saving and loading chores to and from a CSV file.
+'''
+
 class TestChoreStorage(unittest.TestCase):
     def setUp(self):
         self.test_filename = "csv_files/test_chores.csv"

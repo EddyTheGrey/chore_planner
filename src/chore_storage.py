@@ -1,7 +1,11 @@
 import pandas as pd
 from chore_create import chore
 import os
-
+'''
+This section is focused on saving the chores to a csv file and loading them back into the program. 
+The save_chores_to_csv function takes a list of chore objects and saves their information to a csv file. 
+The load_chores_from_csv function reads the csv file and creates chore objects from the data, returning a list of these objects.
+'''
 
 def load_chores_from_csv(filename="csv_files/chores.csv"):
     if not os.path.exists(filename):

@@ -4,6 +4,13 @@ import os
 import chore_create
 import chore_storage
 
+'''
+Main program for the chore planner. This program loads chores from a CSV file, allows the user to mark chores as completed, add new chores, and delete existing chores.
+It saves the updated list of chores back to the CSV file.
+
+The progrma is the one that should be executed and it calls the other scripts. 
+'''
+
 def todays_chores(chores = [], filename = "csv_files/chores.csv"):
     today = datetime.datetime.now().date()
 
